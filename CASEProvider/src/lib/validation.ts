@@ -2,9 +2,11 @@ import { Request, Response, NextFunction } from 'express';
 import { errors } from './errors';
 
 /**
- * UUID v4 regex pattern.
+ * UUID regex pattern for versions 1-5, matching the sourcedId pattern in
+ * public/openapi-spec.json. CASE does not require version 4, and version 5
+ * (name-based) IDs are common for frameworks built from source documents.
  */
-const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 /**
  * Checks if a string is a valid UUID.
